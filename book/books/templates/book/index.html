@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+    {% load book_tags %}
+    <a href="{% url 'about' %}">Перейти на страницу "О нас"</a>
+    {% get_categories as categories %}
+    {% get_articles as arts %}
+    <ul>
+    {% for c in categories %}
+            <li><a href="{% url 'cat' cat_id=c.pk %}">{{ c.name }}</a></li>
+    {% endfor %}
+    </ul>
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+
+<p>Статьи</p>
+<ul>
+    {% for a in arts %}
+    <h1>{{a.title}}</h1>
+    <li>{{a.content|linebreaks|truncatewords:50}}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
