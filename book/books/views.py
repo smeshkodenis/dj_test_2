@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -17,7 +17,18 @@ def posts(request):
 
 
 def addpage(request):
-    form = ArticleForm()
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            try:
+                Article.objects.create(**form.cleaned_data)
+                return redirect('index')
+            except:
+                form.add_error(None, 'Ошибка добавления поста')
+    else:
+        form = ArticleForm()
+
+
     return render(request, 'book/addpage.html', {'form': form, 'title': 'Добавление статьи'})
 
 
