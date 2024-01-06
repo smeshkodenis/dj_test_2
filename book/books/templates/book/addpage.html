@@ -5,7 +5,7 @@
 
 <form action = '{% url "addpage" %}' method="post">
     {% csrf_token %}
-    {{forms.as_p}}
+    {{form.as_p}}
     <button type="submit">Добавить</button>
 </form>
 {% endblock %}
