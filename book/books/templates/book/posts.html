@@ -1,0 +1,15 @@
+{% extends 'book/index.html' %}
+
+{% block content %}
+{% load book_tags %}
+{% show_posts_cat as posts %}
+
+
+<ul>
+    {% for p in posts %}
+    <li>{{p.slug}}</li>
+    {# <li><a href="{% url 'post' slug=p.slug %}">{{ p.title }}</a></li> #}
+    <li>{{p.content|linebreaks|truncatewords:50}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

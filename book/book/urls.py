@@ -24,7 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_category),
     path('cats/<int:cat_id>/', show_category, name='cat'),
-    path('about/', about, name='about')
+    path('about/', about, name='about'),
+    path('posts', posts, name = 'posts'),
+    path('post_sel/<slug:post_slug>/', show_post, name='post'),
+    path('add_page', addpage, name='add_page')
 ]
 
 if settings.DEBUG:

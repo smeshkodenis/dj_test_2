@@ -21,4 +21,15 @@ def show_get_categories(filter):
         list_cat = Book.objects.filter(cat_id=filter)
     return  {'list_cat': list_cat, 'cid': filter}
 
+@register.simple_tag()
+def show_posts_cat():
+    list_posts_cat = Article.objects.all()
+    return list_posts_cat
 
+@register.inclusion_tag('book/show_post')
+def show_get_post(filter):
+    if filter == 0:
+        post = Articles.objects.all()
+    else:
+        post = Articles.objects.filter(slug=filter)
+    return  {'post_sel': post, 'slug': filter}

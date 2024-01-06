@@ -11,8 +11,11 @@
 
     {% load book_tags %}
     <a href="{% url 'about' %}">Перейти на страницу "О нас"</a>
+    <a href="{% url 'posts' %}">Посмотреть статьи</a>
+    <p>
+        <a href="{% url 'add_page' %}">Добавить статью</a>
+    </p>
     {% get_categories as categories %}
-    {% get_articles as arts %}
     <ul>
     {% for c in categories %}
             <li><a href="{% url 'cat' cat_id=c.pk %}">{{ c.name }}</a></li>
@@ -25,12 +28,7 @@
 {% endblock %}
 
 
-<p>Статьи</p>
-<ul>
-    {% for a in arts %}
-    <h1>{{a.title}}</h1>
-    <li>{{a.content|linebreaks|truncatewords:50}}</li>
-    {% endfor %}
+
 </ul>
 </body>
 </html>

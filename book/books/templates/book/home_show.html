@@ -1,8 +1,7 @@
 {% extends 'book/index.html' %}
 
 {% block content %}
-{% show_get_categories as dict %}
-{% list_cat = dict[list_cat] %}
+
 <ul>
     {% for b in list_cat %}
     <li>{{b.title}} - {{b.author}}</li>
