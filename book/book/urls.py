@@ -27,7 +27,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('posts', posts, name = 'posts'),
     path('post_sel/<slug:post_slug>/', show_post, name='post'),
-    path('add_page', addpage, name='add_page')
+    path('add_page', addpage, name='addpage')
 ]
 
 if settings.DEBUG:

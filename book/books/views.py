@@ -18,7 +18,7 @@ def posts(request):
 
 def addpage(request):
     form = ArticleForm()
-    return render(request, 'books.addpage.html', {'form': form, 'menu': menu, 'title': 'Добавление статьи'})
+    return render(request, 'book/addpage.html', {'form': form, 'title': 'Добавление статьи'})
 
 
 def show_category(request, cat_id=0):
