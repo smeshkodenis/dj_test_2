@@ -26,7 +26,7 @@ urlpatterns = [
     path('cats/<int:cat_id>/', show_category, name='cat'),
     path('about/', about, name='about'),
     path('posts', PostsMain.as_view(), name = 'posts'),
-    path('post_sel/<slug:post_slug>/', show_post, name='post'),
+    path('post_sel/<slug:post_slug>/', ShowPost.as_view(), name='post_sel'),
     path('add_page', addpage, name='addpage'),
     path('add_new_post_cat', add_new_post_cat, name='add_new_post_cat')
 ]

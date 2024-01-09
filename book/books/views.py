@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import *
 from .forms import *
@@ -65,4 +65,11 @@ def show_category(request, cat_id=0):
     return render(request, 'book/home_show.html', {'list_cat': list_cat, 'cid': cat_id})
 
 def show_post(request, post_slug):
-    return render(request, 'book/show_post.html', post_slug)
+    return render(request, 'book/show_post.html', {'post_slug':post_slug})
+
+class ShowPost(DetailView):
+    model = Article
+    template_name = 'book/show_post.html'
+    context_object_name = 'post'
+    slug_field = 'slug'
+    slug_url_kwarg = 'post_slug'
