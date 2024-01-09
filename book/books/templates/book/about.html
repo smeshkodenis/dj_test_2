@@ -4,4 +4,14 @@
 <title>О нас</title>
 <h1>Информация о нас</h1>
 
+<h1>Форма обратной связи</h1>
+<form action="{% url 'about' %}" method="post">
+    {%csrf_token %}
+    {% for f in form %}
+    <p><label for = "{{f.id_for_label}}">{{f.label}}:</label>{{f}}</p>
+    <div>{{f.errors}}</div>
+    {% endfor %}
+    <button type = 'submit'>Послать сообщение</button>
+</form>
+
 {% endblock %}

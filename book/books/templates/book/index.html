@@ -10,10 +10,12 @@
 
 
     {% load book_tags %}
+    <a href="{% url 'index' %}">Главная страница</a>
     <a href="{% url 'about' %}">Перейти на страницу "О нас"</a>
     <a href="{% url 'posts' %}">Посмотреть статьи</a>
     <p>
         <a href="{% url 'addpage' %}">Добавить статью</a>
+        <a href="{% url 'add_new_post_cat' %}">Добавить новую категорию статей</a>
     </p>
     {% get_categories as categories %}
     <ul>

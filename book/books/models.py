@@ -11,7 +11,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
 
 class Article(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL") #так поле отображается в браузере, но не заполняется автоматически
 
     author = models.CharField(max_length=255)
@@ -29,7 +29,13 @@ class Article(models.Model):
 
 
 class PostsCat(models.Model):
-    name = models.CharField(max_length=255, db_index=True)
+    name = models.CharField(max_length=355, db_index=True)
+    slug = AutoSlugField(unique=True, verbose_name="URL", populate_from='name')
 
     def __str__(self):
         return self.name
+
+class Message(models.Model):
+    name = models.CharField(max_length=355)
+    email = models.EmailField(max_length=355)
+    text = models.TextField(max_length=2000)

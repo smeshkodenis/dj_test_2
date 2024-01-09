@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView
+
 from .models import *
 from .forms import *
 # Create your views here.
@@ -10,10 +12,21 @@ def categories(request, cat_id):
     return render(request, 'book/index.html', cat_id=cat_id)
 
 def about(request):
-    return render(request, 'book/about.html')
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('about')
+    else:
+        form = MessageForm()
+    return render(request, 'book/about.html', {'form': form})
 
-def posts(request):
-    return render(request, 'book/posts.html')
+'''def posts(request):
+    return render(request, 'book/posts.html')'''
+
+class PostsMain(ListView):
+    model = Article
+    template_name = 'book/posts.html'
 
 
 def addpage(request):
@@ -31,6 +44,18 @@ def addpage(request):
 
     return render(request, 'book/addpage.html', {'form': form, 'title': 'Добавление статьи'})
 
+
+def add_new_post_cat(request):
+    if request.method == 'POST':
+        form = PostCatForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = PostCatForm()
+
+
+    return render(request, 'book/add_new_post_cat.html', {'form': form, 'title': 'Добавление новой категории статей'})
 
 def show_category(request, cat_id=0):
     if cat_id == 0:
